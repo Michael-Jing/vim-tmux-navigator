@@ -12,12 +12,13 @@ Usage
 -----
 
 This plugin provides the following mappings which allow you to move between
-Vim panes and tmux splits seamlessly.
+Vim panes and tmux splits seamlessly. These keys are following the key bindings
+in the i3 tilling window manager when using Dvorak kefboard layout
 
 - `<ctrl-h>` => Left
-- `<ctrl-j>` => Down
-- `<ctrl-k>` => Up
-- `<ctrl-l>` => Right
+- `<ctrl-t>` => Down
+- `<ctrl-n>` => Up
+- `<ctrl-s>` => Right
 - `<ctrl-\>` => Previous split
 
 **Note** - you don't need to use your tmux `prefix` key sequence before using
