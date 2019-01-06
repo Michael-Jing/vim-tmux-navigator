@@ -9,6 +9,7 @@ let g:loaded_tmux_navigator = 1
 
 function! s:VimNavigate(direction)
   try
+    echo 'calling wincmd'
     execute 'wincmd ' . a:direction
   catch
     echohl ErrorMsg | echo 'E11: Invalid in command-line window; <CR> executes, CTRL-C quits: wincmd k' | echohl None
@@ -17,13 +18,14 @@ endfunction
 
 if !get(g:, 'tmux_navigator_no_mappings', 0)
   nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-  nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-  nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-  nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+  nnoremap <silent> <c-t> :TmuxNavigateDown<cr>
+  nnoremap <silent> <c-n> :TmuxNavigateUp<cr>
+  nnoremap <silent> <c-s> :TmuxNavigateRight<cr>
   nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 endif
 
 if empty($TMUX)
+  echo 'TMUX is empty'
   command! TmuxNavigateLeft call s:VimNavigate('h')
   command! TmuxNavigateDown call s:VimNavigate('j')
   command! TmuxNavigateUp call s:VimNavigate('k')
@@ -87,6 +89,7 @@ function! s:ShouldForwardNavigationBackToTmux(tmux_last_pane, at_tab_page_edge)
 endfunction
 
 function! s:TmuxAwareNavigate(direction)
+  echo 'In TmuxAwarenavigate'
   let nr = winnr()
   let tmux_last_pane = (a:direction == 'p' && s:tmux_is_last_pane)
   if !tmux_last_pane
